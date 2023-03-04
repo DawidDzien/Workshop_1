@@ -19,6 +19,7 @@ public class TaskManager {
         showMenu(OPTIONS);
 
         Scanner scanner = new Scanner(System.in);
+
         while (scanner.hasNextLine()) {
             String choice = scanner.nextLine();
             switch (choice) {
@@ -47,11 +48,13 @@ public class TaskManager {
         }
     }
     public static void showMenu(String[] tab) {
+
         System.out.println(ConsoleColors.BLUE + "Please select an option:" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.PURPLE + "add " + ConsoleColors.GREEN + "+ enter - This will add a new task.");
         System.out.println(ConsoleColors.PURPLE + "remove " + ConsoleColors.GREEN + "+ enter - This will remove a task.");
         System.out.println(ConsoleColors.PURPLE + "list " + ConsoleColors.GREEN + "+ enter - This will list all stored tasks.");
         System.out.println(ConsoleColors.PURPLE + "exit " + ConsoleColors.GREEN + "+ enter - This will exit the program.");
+
         for (String x : tab) {
             System.out.println(ConsoleColors.RESET);
             System.out.println(ConsoleColors.PURPLE + x);
@@ -60,6 +63,7 @@ public class TaskManager {
         System.out.print("Type in your choice: ");
     }
     public static String[][] loadDataToTab() {
+
         Path dir = Paths.get(PATH);
         if (Files.notExists(dir)) {
             System.out.println(ConsoleColors.RED_BOLD + "Cannot load file! File does not exist!" +
@@ -81,8 +85,8 @@ public class TaskManager {
         return tab;
 
     }
-
     public static void printTab(String[][] tab) {
+
         for (int i = 0; i < tab.length; i++) {
             System.out.print(i + " : ");
             for (int j = 0; j < tab[i].length; j++) {
@@ -91,8 +95,8 @@ public class TaskManager {
             System.out.println();
         }
     }
-
     public static void addTask() {
+
         Scanner scanner = new Scanner(System.in);
         System.out.println(ConsoleColors.RESET);
         System.out.println("Please add a short task description.");
@@ -106,10 +110,9 @@ public class TaskManager {
         TASKS[TASKS.length - 1][0] = description;
         TASKS[TASKS.length - 1][1] = dueDate;
         TASKS[TASKS.length - 1][2] = isImportant;
-
     }
-
     public static void removeTask(String[][] tab, int index) {
+
         try {
             if (index >= 0 && index < tab.length) {
                 TASKS = ArrayUtils.remove(tab, index);
@@ -122,12 +125,12 @@ public class TaskManager {
                     ConsoleColors.RESET);
         }
     }
-
     public static int chooseTaskIndexNumber() {
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please select the number of task to be removed");
-
         String n = scanner.nextLine();
+
         while (!NumberUtils.isParsable(n) || Integer.parseInt(n) < 0) {
             System.out.println(ConsoleColors.RED_BOLD + "Number you have chosen is incorrect. Please provide a number greater or equal to 0" +
                     ConsoleColors.RESET);
@@ -135,15 +138,14 @@ public class TaskManager {
         }
         return Integer.parseInt(n);
     }
-
     public static void saveTabToFile(String FILE_NAME, String[][] tab) {
-        Path dir = Paths.get(FILE_NAME);
 
+        Path dir = Paths.get(FILE_NAME);
         String[] lines = new String[TASKS.length];
+
         for (int i = 0; i < tab.length; i++) {
             lines[i] = String.join(",", tab[i]);
         }
-
         try {
             Files.write(dir, Arrays.asList(lines));
         } catch (IOException ex) {

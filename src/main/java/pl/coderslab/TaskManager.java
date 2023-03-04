@@ -15,7 +15,6 @@ public class TaskManager {
 
     static final String[] OPTIONS = {"add", "remove", "list", "exit"};
     static final String FILE_NAME = "tasks.csv";
-
     static final String PATH = "/home/shin/Workshop_1/tasks.csv";
     static String[][] TASKS;
 

@@ -19,7 +19,7 @@ public class TaskManager {
     static final String PATH = "/home/shin/Workshop_1/tasks.csv";
     static String[][] TASKS;
 
-    public static void main(String[] args)  {
+    public static void main(String[] args) {
 
         TASKS = loadDataToTab();
         showMenu(OPTIONS);

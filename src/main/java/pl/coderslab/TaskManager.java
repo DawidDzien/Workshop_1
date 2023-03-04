@@ -2,22 +2,17 @@ package pl.coderslab;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.math.NumberUtils;
-
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-
-
 public class TaskManager {
-
 
     static final String[] OPTIONS = {"add", "remove", "list", "exit"};
     static final String FILE_NAME = "tasks.csv";
     static final String PATH = "/home/shin/Workshop_1/tasks.csv";
     static String[][] TASKS;
-
     public static void main(String[] args) {
 
         TASKS = loadDataToTab();
@@ -51,7 +46,6 @@ public class TaskManager {
 
         }
     }
-
     public static void showMenu(String[] tab) {
         System.out.println(ConsoleColors.BLUE + "Please select an option:" + ConsoleColors.RESET);
         System.out.println(ConsoleColors.PURPLE + "add " + ConsoleColors.GREEN + "+ enter - This will add a new task.");
@@ -61,13 +55,10 @@ public class TaskManager {
         for (String x : tab) {
             System.out.println(ConsoleColors.RESET);
             System.out.println(ConsoleColors.PURPLE + x);
-
-
         }
         System.out.println();
         System.out.print("Type in your choice: ");
     }
-
     public static String[][] loadDataToTab() {
         Path dir = Paths.get(PATH);
         if (Files.notExists(dir)) {
